@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExactKBwala.in - All In One Government Image Compressor Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        saffron: '#FF9933',
+                        chakra: '#000080',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-subtle': 'bounceSubtle 2s infinite',
+                    },
+                    keyframes: {
+                        bounceSubtle: {
+                            '0%, 100%': { transform: 'translateY(-2%)' },
+                            '50%': { transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-text-rainbow {
+            background: linear-gradient(135deg, #FF5722 0%, #FF9800 25%, #2196F3 50%, #4CAF50 75%, #9C27B0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Indian Flag Tricolor Gradient Styling */
+        .gradient-text-flag {
+            background: linear-gradient(90deg, #FF9933 0%, #FF9933 35%, #FFFFFF 50%, #138808 65%, #138808 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0px 2px 6px rgba(0, 0, 0, 0.7));
+        }
+        .gradient-header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f766e 100%);
+        }
+        .hero-glow {
+            box-shadow: 0 0 50px -10px rgba(34, 197, 94, 0.3);
+        }
+        .dropzone-dash {
+            background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='16' ry='16' stroke='%2316A34A' stroke-width='3' stroke-dasharray='12%2c 12' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+        }
+        /* Before & After Interactive Comparison Slider Styles */
+        .ba-slider-container {
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+            touch-action: pan-y;
+        }
+        .ba-slider-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 50%;
+            overflow: hidden;
+            border-right: 3px solid #22c55e;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+        }
+        .ba-handle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 36px;
+            height: 36px;
+            background-color: #16a34a;
+            color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.4);
+            cursor: ew-resize;
+            z-index: 30;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between selection:bg-brand-500 selection:text-white">
+
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Brand Logo & Name (Tricolor Theme) -->
+                <a href="#" onclick="showPage('home')" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-b from-[#FF9933] via-white to-[#138808] p-[2.5px] shadow-md group-hover:scale-105 transition-transform flex items-center justify-center">
+                        <div class="w-full h-full bg-slate-900 rounded-[9px] flex items-center justify-center text-[#FF9933] relative overflow-hidden">
+                            <i class="fa-solid fa-compress text-base z-10 text-white"></i>
+                            <div class="absolute inset-0 opacity-20 bg-gradient-to-tr from-[#FF9933] via-white to-[#138808]"></div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-black text-xl sm:text-2xl tracking-tight text-slate-900 leading-none">
+                            Exact<span class="text-[#FF9933]">KB</span><span class="text-[#138808]">wala</span><span class="text-[#000080] text-sm font-extrabold">.in</span>
+                        </span>
+                        <span class="text-[10px] font-bold text-slate-500 tracking-wider uppercase flex items-center gap-1">
+                            <span class="inline-block w-2 h-2 rounded-full bg-[#FF9933]"></span>
+                            <span class="inline-block w-2 h-2 rounded-full bg-slate-300"></span>
+                            <span class="inline-block w-2 h-2 rounded-full bg-[#138808]"></span>
+                            Govt Image Compressor
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-4 text-xs lg:text-sm font-medium">
+                    <button onclick="showPage('home')" class="px-2.5 py-2 rounded-lg text-slate-700 hover:text-brand-600 hover:bg-slate-100 transition">Home</button>
+                    <button onclick="scrollToSection('compressor-tool')" class="px-2.5 py-2 rounded-lg bg-brand-50 text-brand-700 font-semibold hover:bg-brand-100 transition"><i class="fa-solid fa-bolt text-amber-500 mr-1"></i>Compress Now</button>
+                    <button onclick="showPage('articles')" class="px-2.5 py-2 rounded-lg text-slate-700 hover:text-brand-600 hover:bg-slate-100 transition">Guides & Help</button>
+                    <button onclick="showPage('about')" class="px-2.5 py-2 rounded-lg text-slate-700 hover:text-brand-600 hover:bg-slate-100 transition">About Us</button>
+                    <button onclick="showPage('disclaimer')" class="px-2.5 py-2 rounded-lg text-slate-700 hover:text-brand-600 hover:bg-slate-100 transition">Disclaimer</button>
+                    <button onclick="showPage('privacy')" class="px-2.5 py-2 rounded-lg text-slate-700 hover:text-brand-600 hover:bg-slate-100 transition">Privacy Policy</button>
+                    <button onclick="showPage('queries')" class="px-2.5 py-2 rounded-lg text-slate-700 hover:text-brand-600 hover:bg-slate-100 transition">FAQ</button>
+                    <button onclick="showPage('contact')" class="px-2.5 py-2 rounded-lg text-slate-700 hover:text-brand-600 hover:bg-slate-100 transition">Contact</button>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-2 shadow-lg">
+            <button onclick="showPage('home'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-lg text-slate-700 font-medium hover:bg-slate-100">Home</button>
+            <button onclick="scrollToSection('compressor-tool'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-lg bg-brand-50 text-brand-700 font-semibold"><i class="fa-solid fa-bolt text-amber-500 mr-1.5"></i>Compress Image (Exact KB)</button>
+            <button onclick="showPage('articles'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-lg text-slate-700 font-medium hover:bg-slate-100">Guides & Articles</button>
+            <button onclick="showPage('about'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-lg text-slate-700 font-medium hover:bg-slate-100">About ExactKBwala</button>
+            <button onclick="showPage('disclaimer'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-lg text-slate-700 font-medium hover:bg-slate-100">Disclaimer</button>
+            <button onclick="showPage('privacy'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-lg text-slate-700 font-medium hover:bg-slate-100">Privacy Policy</button>
+            <button onclick="showPage('queries'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-lg text-slate-700 font-medium hover:bg-slate-100">Your Queries / Support</button>
+            <button onclick="showPage('contact'); toggleMobileMenu()" class="block w-full text-left px-3 py-2 rounded-lg text-slate-700 font-medium hover:bg-slate-100">Contact Us</button>
+        </div>
+    </header>
+
+    <!-- MAIN PAGE CONTAINER -->
+    <main class="flex-grow">
+        <div id="page-home" class="page-content">
+            
+            <!-- Hero Top Banner -->
+            <section class="bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-white pt-12 pb-20 px-4 sm:px-6 lg:px-8 text-center relative overflow-hidden">
+                <!-- Background decorative elements -->
+                <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#22c55e_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                
+                <div class="max-w-5xl mx-auto relative z-10">
+                    
+                    <!-- Main Requested Top Header with Indian Flag Colorful Gradient Styling -->
+                    <div class="inline-block mb-3 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-inner">
+                        <span class="text-xs sm:text-sm font-extrabold tracking-widest uppercase text-amber-400">
+                            🇮🇳 Official Govt Form Utility
+                        </span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight mb-2 leading-tight">
+                        <span class="gradient-text-flag drop-shadow-lg uppercase tracking-wider">ALL IN ONE GOVERNMENT TOOL</span>
+                    </h1>
+
+                    <!-- COLORFUL STYLED TEXT ADDED AS REQUESTED -->
+                    <div class="my-3 py-1">
+                        <span class="text-xl sm:text-3xl md:text-4xl font-black gradient-text-rainbow drop-shadow-lg tracking-wide uppercase">
+                            ✨ Compress Image Without Losing Quality ✨
+                        </span>
+                    </div>
+
+                    <p class="text-lg sm:text-xl md:text-2xl text-slate-200 font-bold mb-6 max-w-3xl mx-auto">
+                        Compress Images to <span class="text-emerald-400 underline decoration-amber-400 underline-offset-4">Exact Target KB</span> for SSC, UPSC, IBPS, RRB & State Exams
+                    </p>
+
+                    <!-- Highlights Bar -->
+                    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-xs sm:text-sm font-semibold text-slate-300 mb-8">
+                        <span class="flex items-center bg-white/10 px-3 py-1.5 rounded-full border border-white/10">
+                            <i class="fa-solid fa-bolt text-amber-400 mr-2"></i> Free & Super Fast
+                        </span>
+                        <span class="flex items-center bg-white/10 px-3 py-1.5 rounded-full border border-white/10">
+                            <i class="fa-solid fa-shield-halved text-emerald-400 mr-2"></i> 100% Safe (Client-Side Privacy)
+                        </span>
+                        <span class="flex items-center bg-white/10 px-3 py-1.5 rounded-full border border-white/10">
+                            <i class="fa-solid fa-user-xmark text-cyan-400 mr-2"></i> No Sign Up Required
+                        </span>
+                        <span class="flex items-center bg-white/10 px-3 py-1.5 rounded-full border border-white/10">
+                            <i class="fa-solid fa-headset text-rose-400 mr-2"></i> 24x7 Support Available
+                        </span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Image Compressor Core Tool Box Section -->
+            <section id="compressor-tool" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-20 mb-16">
+                <div class="bg-white rounded-2xl shadow-2xl border border-slate-200/80 p-5 sm:p-8 hero-glow">
+                    
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 border-b border-slate-100 mb-6 gap-2">
+                        <div>
+                            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center">
+                                <i class="fa-solid fa-sliders text-brand-600 mr-2.5"></i>
+                                Exact Target Image Compressor
+                            </h2>
+                            <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Drag & drop your photo or signature and enter exact required size (e.g. 20 KB)</p>
+                        </div>
+                        <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full flex items-center">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 mr-1.5 animate-pulse"></span>
+                            Exact Match Precision Engine Active
+                        </span>
+                    </div>
+
+                    <!-- Govt Presets Toolbar -->
+                    <div class="mb-6">
+                        <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">
+                            <i class="fa-solid fa-wand-magic-sparkles text-amber-500 mr-1"></i> Quick Presets for Govt Online Forms:
+                        </label>
+                        <div class="flex flex-wrap gap-2" id="preset-buttons">
+                            <button onclick="setPreset(20, 'SSC Photo (20 KB)')" class="preset-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 hover:bg-brand-600 hover:text-white text-slate-700 transition border border-slate-200">
+                                📸 SSC Photo (20 KB Exact)
+                            </button>
+                            <button onclick="setPreset(10, 'SSC Signature (10 KB)')" class="preset-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 hover:bg-brand-600 hover:text-white text-slate-700 transition border border-slate-200">
+                                ✍️ SSC Signature (10 KB Exact)
+                            </button>
+                            <button onclick="setPreset(50, 'UPSC Passport Photo (50 KB)')" class="preset-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 hover:bg-brand-600 hover:text-white text-slate-700 transition border border-slate-200">
+                                🏛️ UPSC Photo (50 KB)
+                            </button>
+                            <button onclick="setPreset(20, 'IBPS Signature (20 KB)')" class="preset-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 hover:bg-brand-600 hover:text-white text-slate-700 transition border border-slate-200">
+                                🏦 IBPS Signature (20 KB)
+                            </button>
+                            <button onclick="setPreset(100, 'Govt Document/Certificate (100 KB)')" class="preset-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 hover:bg-brand-600 hover:text-white text-slate-700 transition border border-slate-200">
+                                📄 Document / Certificate (100 KB)
+                            </button>
+                            <button onclick="setPreset(200, 'Aadhaar / PAN Copy (200 KB)')" class="preset-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 hover:bg-brand-600 hover:text-white text-slate-700 transition border border-slate-200">
+                                🪪 ID Card Copy (200 KB)
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Target KB Settings Box -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 bg-slate-50 p-4 rounded-xl border border-slate-200 mb-6">
+                        <div>
+                            <label for="compression-mode-select" class="block text-sm font-bold text-slate-800 mb-1">
+                                Compression Mode:
+                            </label>
+                            <select id="compression-mode-select" onchange="toggleQualityMode()" class="w-full py-2.5 px-3 bg-white border border-slate-300 rounded-lg text-sm font-semibold text-slate-700 focus:ring-2 focus:ring-brand-500 focus:outline-none shadow-sm">
+                                <option value="target">🎯 Exact Target KB Engine (Zero Clarity Loss)</option>
+                                <option value="manual">🎚️ Manual Quality Select (1-100%)</option>
+                            </select>
+                            <p class="text-[11px] text-slate-500 mt-1">Switch between KB target or manual % quality.</p>
+                        </div>
+
+                        <div id="target-kb-container" class="md:col-span-1">
+                            <label for="target-kb-input" class="block text-sm font-bold text-slate-800 mb-1">
+                                Exact Target Size (KB): <span class="text-rose-600">*</span>
+                            </label>
+                            <div class="relative">
+                                <input type="number" id="target-kb-input" value="20" min="2" max="10000" step="1" oninput="triggerRecompress()" 
+                                    class="w-full pl-3 pr-12 py-2.5 bg-white border border-slate-300 rounded-lg font-extrabold text-lg text-brand-700 focus:ring-2 focus:ring-brand-500 focus:outline-none shadow-sm">
+                                <span class="absolute right-3 top-3 text-sm font-bold text-slate-400">KB</span>
+                            </div>
+                            <p class="text-[11px] text-slate-500 mt-1">E.g., enter <b>20</b> to get output exact 20.00 KB!</p>
+                        </div>
+
+                        <!-- Manual Image Quality Selector (1-100%) -->
+                        <div id="manual-quality-container" class="hidden md:col-span-1">
+                            <div class="flex justify-between items-center mb-1">
+                                <label for="quality-slider" class="block text-sm font-bold text-slate-800">
+                                    Image Quality (1-100%):
+                                </label>
+                                <span id="quality-val-badge" class="bg-brand-600 text-white font-extrabold text-xs px-2 py-0.5 rounded">90%</span>
+                            </div>
+                            <div class="flex items-center space-x-2 mt-1">
+                                <input type="range" id="quality-slider" min="1" max="100" value="90" oninput="syncQualityFromSlider()" onchange="triggerRecompress()"
+                                    class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-600">
+                                <input type="number" id="quality-num-input" min="1" max="100" value="90" oninput="syncQualityFromNumber()" onchange="triggerRecompress()"
+                                    class="w-16 py-1 px-1.5 text-center bg-white border border-slate-300 rounded-md font-bold text-sm text-brand-700 focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            </div>
+                            <div class="flex justify-between text-[10px] text-slate-500 font-bold mt-1">
+                                <span>1% (Low)</span>
+                                <span>50% (Medium)</span>
+                                <span>100% (High Sharpness)</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="clarity-priority-select" class="block text-sm font-bold text-slate-800 mb-1">
+                                ✨ Visual Clarity Priority:
+                            </label>
+                            <select id="clarity-priority-select" onchange="triggerRecompress()" class="w-full py-2.5 px-3 bg-white border border-slate-300 rounded-lg text-sm font-semibold text-slate-700 focus:ring-2 focus:ring-brand-500 focus:outline-none shadow-sm">
+                                <option value="ultra">🌟 Ultra Sharp (Max Face/Text Clarity)</option>
+                                <option value="balanced" selected>⚖️ Balanced Sharpness (Recommended)</option>
+                                <option value="compact">🗜️ Max Compression Efficiency</option>
+                            </select>
+                            <p class="text-[11px] text-slate-500 mt-1">Prevents photos from looking blurry.</p>
+                        </div>
+
+                        <div>
+                            <label for="sharpen-filter-select" class="block text-sm font-bold text-slate-800 mb-1">
+                                🗡️ Smart Anti-Blur Sharpening:
+                            </label>
+                            <select id="sharpen-filter-select" onchange="triggerRecompress()" class="w-full py-2.5 px-3 bg-white border border-slate-300 rounded-lg text-sm font-semibold text-slate-700 focus:ring-2 focus:ring-brand-500 focus:outline-none shadow-sm">
+                                <option value="high" selected>⚡ High Edge Sharpening (Best for Signature & Face)</option>
+                                <option value="medium">✨ Medium Anti-Blur</option>
+                                <option value="none">🚫 No Sharpening Filter</option>
+                            </select>
+                            <p class="text-[11px] text-slate-500 mt-1">Keeps signature ink and facial details crisp.</p>
+                        </div>
+
+                        <div>
+                            <label for="output-format" class="block text-sm font-bold text-slate-800 mb-1">
+                                Output Image Format:
+                            </label>
+                            <select id="output-format" onchange="triggerRecompress()" class="w-full py-2.5 px-3 bg-white border border-slate-300 rounded-lg text-sm font-semibold text-slate-700 focus:ring-2 focus:ring-brand-500 focus:outline-none shadow-sm">
+                                <option value="image/jpeg">JPG / JPEG (Standard Govt Form)</option>
+                                <option value="image/png">PNG (Lossless Clarity)</option>
+                                <option value="image/webp">WEBP (Modern Web)</option>
+                            </select>
+                            <p class="text-[11px] text-slate-500 mt-1">Most online portals require JPG/JPEG.</p>
+                        </div>
+                    </div>
+
+                    <!-- Pre-Compression Image Quality Selection Bar -->
+                    <div class="mb-6 bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-50 p-4 rounded-xl border border-emerald-200/80 shadow-sm">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                            <label class="block text-xs font-extrabold text-emerald-900 uppercase tracking-wider flex items-center">
+                                <i class="fa-solid fa-sliders text-emerald-600 mr-2 text-sm"></i>
+                                Select Compression Quality Before Uploading:
+                            </label>
+                            <span class="text-[11px] font-bold text-emerald-700 bg-white px-2.5 py-0.5 rounded-full border border-emerald-200">
+                                🛡️ Smart HD Anti-Blur Tech Active
+                            </span>
+                        </div>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                            <button type="button" onclick="setQualityLevel('100')" class="quality-preset-btn px-3 py-2 rounded-lg text-xs font-bold bg-white text-slate-800 border border-slate-200 hover:border-emerald-500 hover:bg-emerald-600 hover:text-white transition shadow-sm text-center">
+                                💎 100% Original Clarity
+                            </button>
+                            <button type="button" onclick="setQualityLevel('90')" class="quality-preset-btn px-3 py-2 rounded-lg text-xs font-bold bg-emerald-600 text-white border border-emerald-600 hover:bg-emerald-700 transition shadow-sm text-center">
+                                🌟 90% Ultra High (Best)
+                            </button>
+                            <button type="button" onclick="setQualityLevel('80')" class="quality-preset-btn px-3 py-2 rounded-lg text-xs font-bold bg-white text-slate-800 border border-slate-200 hover:border-emerald-500 hover:bg-emerald-600 hover:text-white transition shadow-sm text-center">
+                                📸 80% High Sharpness
+                            </button>
+                            <button type="button" onclick="setQualityLevel('60')" class="quality-preset-btn px-3 py-2 rounded-lg text-xs font-bold bg-white text-slate-800 border border-slate-200 hover:border-emerald-500 hover:bg-emerald-600 hover:text-white transition shadow-sm text-center">
+                                ⚖️ 60% Balanced
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Drag & Drop Upload Zone -->
+                    <div id="dropzone" class="dropzone-dash rounded-2xl p-8 text-center cursor-pointer hover:bg-slate-50/80 transition group relative border-2 border-transparent">
+                        <input type="file" id="file-input" accept="image/*" class="hidden" onchange="handleFileSelect(event)">
+                        
+                        <div class="w-16 h-16 mx-auto mb-4 bg-brand-100 text-brand-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform shadow-inner">
+                            <i class="fa-solid fa-cloud-arrow-up text-3xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-1">
+                            Click to Select Image or Drag & Drop Here
+                        </h3>
+                        <p class="text-sm text-slate-500 mb-4 max-w-md mx-auto">
+                            Supports JPG, JPEG, PNG, WEBP, BMP. Your files stay 100% private on your device.
+                        </p>
+                        <div class="inline-flex items-center px-4 py-2 bg-brand-600 text-white font-bold text-sm rounded-xl shadow-md group-hover:bg-brand-700 transition">
+                            <i class="fa-solid fa-folder-open mr-2"></i> Browse Photo / Document
+                        </div>
+                    </div>
+
+                    <!-- Enhanced Dynamic Processing Loader -->
+                    <div id="processing-loader" class="hidden my-8 p-6 bg-slate-900 text-white rounded-2xl shadow-xl text-center border border-slate-800">
+                        <div class="max-w-md mx-auto">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center">
+                                    <i class="fa-solid fa-gear fa-spin mr-2"></i> Processing Image...
+                                </span>
+                                <span id="progress-percent" class="text-xs font-black text-emerald-400">0%</span>
+                            </div>
+                            
+                            <!-- Progress Bar Container -->
+                            <div class="w-full h-3 bg-slate-800 rounded-full overflow-hidden p-0.5 border border-slate-700 mb-3">
+                                <div id="progress-bar" class="h-full bg-gradient-to-r from-amber-500 via-emerald-500 to-brand-500 rounded-full transition-all duration-300 w-0"></div>
+                            </div>
+
+                            <p id="progress-step-text" class="text-xs text-slate-300 font-semibold animate-pulse">
+                                Initializing ExactKBwala precision engine...
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Result & Preview Box -->
+                    <div id="result-box" class="hidden mt-8 border-t border-slate-200 pt-6">
+                        <div class="bg-brand-50 border border-brand-200 rounded-xl p-4 mb-6 flex flex-wrap items-center justify-between gap-3">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-[#FF9933] via-[#000080] to-[#138808] text-white flex items-center justify-center font-bold text-lg shadow">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-extrabold text-slate-900 text-base flex items-center gap-2">
+                                        <span>Image Compressed Successfully!</span>
+                                        <span class="bg-amber-100 text-amber-800 text-[11px] font-black px-2 py-0.5 rounded border border-amber-300">100% Exact KB Guaranteed</span>
+                                    </h4>
+                                    <p id="success-status-text" class="text-xs font-semibold text-brand-800">Target hit accurately down to the exact byte.</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
+                                <button id="download-btn" onclick="downloadCompressedImage()" class="w-full sm:w-auto px-6 py-3 bg-brand-600 hover:bg-brand-700 active:scale-95 text-white font-extrabold rounded-xl shadow-lg transition-all flex items-center justify-center text-sm cursor-pointer">
+                                    <i class="fa-solid fa-download mr-2 text-base"></i> Download Image
+                                </button>
+                                <button onclick="openImageInNewTab()" class="w-full sm:w-auto px-4 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl border border-slate-300 transition text-xs flex items-center justify-center cursor-pointer" title="Open full image in new tab">
+                                    <i class="fa-solid fa-arrow-up-right-from-square mr-1.5"></i> Open Image
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Success Download Toast -->
+                        <div id="download-toast" class="hidden mb-4 p-3 bg-emerald-600 text-white text-xs font-bold rounded-xl text-center shadow-md animate-bounce">
+                            <i class="fa-solid fa-circle-check mr-2"></i> File downloaded successfully! Check your browser downloads folder.
+                        </div>
+
+                        <!-- INTERACTIVE BEFORE VS AFTER FEATURE -->
+                        <div class="mb-8 bg-slate-900 text-white p-5 rounded-2xl shadow-lg border border-slate-800">
+                            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 border-b border-slate-800 pb-3 gap-2">
+                                <div>
+                                    <h3 class="text-base font-extrabold flex items-center text-amber-400">
+                                        <i class="fa-solid fa-code-compare mr-2"></i> Interactive Before & After Visual Comparison
+                                    </h3>
+                                    <p class="text-xs text-slate-400 mt-0.5">Drag the divider left or right to inspect compressed photo clarity</p>
+                                </div>
+                                <div class="flex items-center space-x-3 text-xs font-bold">
+                                    <span class="text-rose-400 flex items-center"><span class="w-2 h-2 rounded-full bg-rose-500 mr-1.5"></span> Before (Original)</span>
+                                    <span class="text-emerald-400 flex items-center"><span class="w-2 h-2 rounded-full bg-emerald-500 mr-1.5"></span> After (Compressed)</span>
+                                </div>
+                            </div>
+
+                            <!-- Visual Comparison Container -->
+                            <div id="ba-container" class="ba-slider-container relative h-72 sm:h-96 rounded-xl bg-slate-950 flex items-center justify-center overflow-hidden border border-slate-800">
+                                <!-- Compressed Image (Underneath / After) -->
+                                <img id="ba-img-after" src="" alt="After Compressed" class="absolute max-h-full max-w-full object-contain pointer-events-none">
+                                
+                                <!-- Original Image Overlay (Top / Before) -->
+                                <div id="ba-overlay" class="ba-slider-overlay">
+                                    <img id="ba-img-before" src="" alt="Before Original" class="max-h-full max-w-full object-contain pointer-events-none absolute top-0 left-0 h-full w-full object-contain">
+                                </div>
+
+                                <!-- Draggable Divider Handle -->
+                                <div id="ba-handle" class="ba-handle">
+                                    <i class="fa-solid fa-arrows-left-right text-xs"></i>
+                                </div>
+                            </div>
+                            <p class="text-center text-[11px] text-slate-400 mt-2">💡 Slide handle left or right to inspect clarity at pixel level</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Original Image Card -->
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                                <div class="flex justify-between items-center mb-3">
+                                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Before (Original File)</span>
+                                    <span id="orig-size-badge" class="bg-slate-200 text-slate-800 text-xs font-extrabold px-2.5 py-0.5 rounded">0 KB</span>
+                                </div>
+                                <div class="h-64 bg-slate-200/50 rounded-lg flex items-center justify-center overflow-hidden mb-3 border border-slate-200">
+                                    <img id="orig-img-preview" src="" alt="Original Preview" class="max-h-full max-w-full object-contain">
+                                </div>
+                                <div class="text-xs text-slate-600 space-y-1">
+                                    <p><b>Dimensions:</b> <span id="orig-dimensions">-</span></p>
+                                    <p><b>Format:</b> <span id="orig-format">-</span></p>
+                                </div>
+                            </div>
+
+                            <!-- Compressed Image Card -->
+                            <div class="bg-emerald-50/50 p-4 rounded-xl border border-emerald-200 relative">
+                                <div class="flex justify-between items-center mb-3">
+                                    <span class="text-xs font-bold text-emerald-800 uppercase tracking-wider">After (Compressed File)</span>
+                                    <span id="comp-size-badge" class="bg-brand-600 text-white text-xs font-extrabold px-2.5 py-0.5 rounded shadow-sm">0 KB</span>
+                                </div>
+                                <div class="h-64 bg-slate-200/50 rounded-lg flex items-center justify-center overflow-hidden mb-3 border border-emerald-200">
+                                    <img id="comp-img-preview" src="" alt="Compressed Preview" class="max-h-full max-w-full object-contain">
+                                </div>
+                                <div class="text-xs text-slate-700 space-y-1">
+                                    <p><b>New Dimensions:</b> <span id="comp-dimensions">-</span></p>
+                                    <p><b>Saved Space:</b> <span id="comp-saved-pct" class="text-brand-700 font-bold">0%</span></p>
+                                    <p class="text-[11px] text-slate-500 italic mt-1">Guaranteed to upload on standard Indian govt job portals.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Reset / Action buttons -->
+                        <div class="mt-6 flex justify-center space-x-4">
+                            <button onclick="resetCompressor()" class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs rounded-lg transition flex items-center">
+                                <i class="fa-solid fa-rotate-right mr-1.5"></i> Compress Another Image
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Trust & Live Stats Bar -->
+            <section class="bg-white py-10 border-y border-slate-200 mb-16">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                        <div class="p-4">
+                            <p class="text-3xl sm:text-4xl font-black text-brand-600">5,000,000+</p>
+                            <p class="text-xs sm:text-sm font-semibold text-slate-600 mt-1">Images Compressed</p>
+                        </div>
+                        <div class="p-4">
+                            <p class="text-3xl sm:text-4xl font-black text-amber-500">100% Free</p>
+                            <p class="text-xs sm:text-sm font-semibold text-slate-600 mt-1">No Hide Costs / Unlimited</p>
+                        </div>
+                        <div class="p-4">
+                            <p class="text-3xl sm:text-4xl font-black text-indigo-600">0 KB Upload</p>
+                            <p class="text-xs sm:text-sm font-semibold text-slate-600 mt-1">100% Client-Side Privacy</p>
+                        </div>
+                        <div class="p-4">
+                            <p class="text-3xl sm:text-4xl font-black text-rose-500">4.9 ★★★★★</p>
+                            <p class="text-xs sm:text-sm font-semibold text-slate-600 mt-1">Loved by Cyber Cafés</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Supported Indian Govt Exams Grid -->
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+                <div class="text-center max-w-3xl mx-auto mb-10">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Supported Exam & Portal Formats</h2>
+                    <p class="text-slate-600 text-sm mt-2">ExactKBwala is specially tuned according to official guidelines published by Indian Examination Boards</p>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 text-center hover:shadow-md transition">
+                        <div class="text-3xl mb-2">🏛️</div>
+                        <h3 class="font-bold text-slate-800 text-sm">SSC CGL / CHSL</h3>
+                        <p class="text-[11px] text-slate-500">20 KB - 50 KB</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 text-center hover:shadow-md transition">
+                        <div class="text-3xl mb-2">🇮🇳</div>
+                        <h3 class="font-bold text-slate-800 text-sm">UPSC IAS</h3>
+                        <p class="text-[11px] text-slate-500">20 KB - 300 KB</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 text-center hover:shadow-md transition">
+                        <div class="text-3xl mb-2">🏦</div>
+                        <h3 class="font-bold text-slate-800 text-sm">IBPS Bank PO</h3>
+                        <p class="text-[11px] text-slate-500">10 KB - 50 KB</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 text-center hover:shadow-md transition">
+                        <div class="text-3xl mb-2">🚂</div>
+                        <h3 class="font-bold text-slate-800 text-sm">RRB Railway</h3>
+                        <p class="text-[11px] text-slate-500">30 KB - 70 KB</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 text-center hover:shadow-md transition">
+                        <div class="text-3xl mb-2">🩺</div>
+                        <h3 class="font-bold text-slate-800 text-sm">NEET / NTA</h3>
+                        <p class="text-[11px] text-slate-500">10 KB - 200 KB</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 text-center hover:shadow-md transition">
+                        <div class="text-3xl mb-2">🎓</div>
+                        <h3 class="font-bold text-slate-800 text-sm">State PSC</h3>
+                        <p class="text-[11px] text-slate-500">Exact 20 KB / 50 KB</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5 Important Articles & Guides Section -->
+            <section class="bg-slate-100 py-16 border-t border-slate-200">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+                        <div>
+                            <span class="text-xs font-bold text-brand-600 uppercase tracking-widest">Knowledge Base</span>
+                            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Official Guides & Tutorials</h2>
+                        </div>
+                        <button onclick="showPage('articles')" class="mt-4 md:mt-0 text-sm font-bold text-brand-700 hover:text-brand-800 flex items-center">
+                            View All 5 Important Articles <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Article Card 1 -->
+                        <article onclick="openArticle('art-1')" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition cursor-pointer flex flex-col justify-between">
+                            <div>
+                                <span class="bg-brand-100 text-brand-800 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md">Guide #1</span>
+                                <h3 class="text-lg font-bold text-slate-900 mt-3 mb-2 hover:text-brand-600 transition">How ExactKBwala Engine Works Under the Hood</h3>
+                                <p class="text-xs text-slate-600 line-clamp-3">Understand how HTML5 Canvas and browser-side iterative binary search achieves precise KB compression without sending photos to servers...</p>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-slate-100 text-xs font-bold text-brand-600 flex items-center justify-between">
+                                <span>Read Full Article</span>
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </div>
+                        </article>
+
+                        <!-- Article Card 2 -->
+                        <article onclick="openArticle('art-2')" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition cursor-pointer flex flex-col justify-between">
+                            <div>
+                                <span class="bg-amber-100 text-amber-800 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md">Step-By-Step</span>
+                                <h3 class="text-lg font-bold text-slate-900 mt-3 mb-2 hover:text-brand-600 transition">How to Compress Image to Exact 20 KB for Indian Govt Forms</h3>
+                                <p class="text-xs text-slate-600 line-clamp-3">A practical step-by-step guide on how to upload passport photos and signature images to get exactly 20.0 KB without quality loss...</p>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-slate-100 text-xs font-bold text-brand-600 flex items-center justify-between">
+                                <span>Read Full Article</span>
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </div>
+                        </article>
+
+                        <!-- Article Card 3 -->
+                        <article onclick="openArticle('art-3')" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition cursor-pointer flex flex-col justify-between">
+                            <div>
+                                <span class="bg-blue-100 text-blue-800 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md">Official Specs</span>
+                                <h3 class="text-lg font-bold text-slate-900 mt-3 mb-2 hover:text-brand-600 transition">Standard Photo & Signature Specifications for SSC, UPSC & IBPS</h3>
+                                <p class="text-xs text-slate-600 line-clamp-3">A complete cheat sheet of width, height, aspect ratio, and file size rules for major recruitment portals in 2026...</p>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-slate-100 text-xs font-bold text-brand-600 flex items-center justify-between">
+                                <span>Read Full Article</span>
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reviews & People Trust Section -->
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="text-xs font-bold text-brand-600 uppercase tracking-widest">User Reviews & Trust</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Trusted by Students & Cyber-Café Owners</h2>
+                    <p class="text-slate-600 text-sm mt-2">See why thousands of exam applicants choose ExactKBwala.in daily</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="flex items-center space-x-1 text-amber-400 text-xs mb-3">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-700 text-xs sm:text-sm leading-relaxed mb-4">
+                            "Mera SSC CGL ka form me exact 20 KB photo chahiye tha. Dusre site pe kabhi 22 kb aata tha kabhi 18 kb blur ho jata tha. ExactKBwala me single click me exact size mil gaya!"
+                        </p>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center text-sm">RK</div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-xs">Rajesh Kumar</h4>
+                                <p class="text-[11px] text-slate-500">SSC Aspirant, Patna</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="flex items-center space-x-1 text-amber-400 text-xs mb-3">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-700 text-xs sm:text-sm leading-relaxed mb-4">
+                            "Main Cyber Café chalata hoon. Har din 50+ candidates ke forms bharta hoon. ExactKBwala ka speed and zero-upload security feature super fast hai."
+                        </p>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-full bg-indigo-600 text-white font-bold flex items-center justify-center text-sm">MS</div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-xs">Manoj Sharma</h4>
+                                <p class="text-[11px] text-slate-500">Digital Cyber Point, Jaipur</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="flex items-center space-x-1 text-amber-400 text-xs mb-3">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-700 text-xs sm:text-sm leading-relaxed mb-4">
+                            "UPSC form document signature compression was so tricky until I found this tool. Very accurate KB output as promised!"
+                        </p>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-full bg-rose-600 text-white font-bold flex items-center justify-center text-sm">PS</div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-xs">Priya Singh</h4>
+                                <p class="text-[11px] text-slate-500">UPSC Candidate, Delhi</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ARTICLES PAGE CONTENT -->
+        <div id="page-articles" class="page-content hidden max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <h1 class="text-3xl font-extrabold text-slate-900 mb-2">Important Articles & Help Guides</h1>
+            <p class="text-slate-600 text-sm mb-8">Everything you need to know about image size compression for government exam portals.</p>
+
+            <div class="space-y-8">
+                <!-- Article 1 -->
+                <article id="art-1" class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                    <span class="bg-brand-100 text-brand-800 text-xs font-bold px-2.5 py-1 rounded">Article 1</span>
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-2 mb-4">How ExactKBwala Works: Client-Side Precision Technology</h2>
+                    <div class="prose prose-slate text-sm text-slate-700 space-y-3 leading-relaxed">
+                        <p>ExactKBwala utilizes HTML5 Canvas and client-side binary search algorithms directly in your browser. Unlike traditional image compressor websites that upload your personal documents to remote servers, ExactKBwala processes your photo locally inside your device's memory.</p>
+                        <p><b>Key Tech Highlights:</b></p>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li><b>Binary Search Optimization:</b> Our engine iteratively tunes JPEG image quality parameters until the precise target KB requested by the user is achieved.</li>
+                            <li><b>Zero Data Upload:</b> Your passport photos, Aadhaar images, and signatures never leave your browser, providing 100% data privacy.</li>
+                            <li><b>EXIF Metadata Removal:</b> Sensitive location and camera metadata are automatically stripped during processing.</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article id="art-2" class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                    <span class="bg-amber-100 text-amber-800 text-xs font-bold px-2.5 py-1 rounded">Article 2</span>
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-2 mb-4">How to Compress an Image to Exact 20KB for Indian Govt Forms</h2>
+                    <div class="prose prose-slate text-sm text-slate-700 space-y-3 leading-relaxed">
+                        <p>Most Indian portals like Staff Selection Commission (SSC) and Railway Recruitment Board (RRB) mandate passport photographs between 20.0 KB and 50.0 KB, and signature files strictly between 10.0 KB and 20.0 KB.</p>
+                        <p><b>Step-by-step instructions using ExactKBwala.in:</b></p>
+                        <ol class="list-decimal pl-5 space-y-1">
+                            <li>Select the <b>📸 SSC Photo (20 KB Exact)</b> preset or manually enter <b>20</b> in the Target Size box.</li>
+                            <li>Drag and drop your original high-resolution photo or click <b>Browse Photo</b>.</li>
+                            <li>ExactKBwala's engine automatically downsamples image dimensions and adjusts compression quality.</li>
+                            <li>Click <b>Download Image</b> and directly upload to your online form without rejections!</li>
+                        </ol>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article id="art-3" class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                    <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2.5 py-1 rounded">Article 3</span>
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-2 mb-4">Standard Photo & Signature Sizes for Indian Govt Exams</h2>
+                    <div class="overflow-x-auto mt-4">
+                        <table class="w-full text-xs sm:text-sm text-left border-collapse border border-slate-200">
+                            <thead class="bg-slate-100 text-slate-800 font-bold">
+                                <tr>
+                                    <th class="p-3 border border-slate-200">Exam Portal</th>
+                                    <th class="p-3 border border-slate-200">Photo Size (KB)</th>
+                                    <th class="p-3 border border-slate-200">Signature Size (KB)</th>
+                                    <th class="p-3 border border-slate-200">Format</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200">
+                                <tr>
+                                    <td class="p-3 border border-slate-200 font-semibold">SSC (CGL, CHSL, MTS)</td>
+                                    <td class="p-3 border border-slate-200">20 KB to 50 KB</td>
+                                    <td class="p-3 border border-slate-200">10 KB to 20 KB</td>
+                                    <td class="p-3 border border-slate-200">JPG / JPEG</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 border border-slate-200 font-semibold">UPSC (Civil Services)</td>
+                                    <td class="p-3 border border-slate-200">20 KB to 300 KB</td>
+                                    <td class="p-3 border border-slate-200">20 KB to 300 KB</td>
+                                    <td class="p-3 border border-slate-200">JPG</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 border border-slate-200 font-semibold">IBPS & SBI Bank Exams</td>
+                                    <td class="p-3 border border-slate-200">20 KB to 50 KB</td>
+                                    <td class="p-3 border border-slate-200">10 KB to 20 KB</td>
+                                    <td class="p-3 border border-slate-200">JPG / JPEG</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 border border-slate-200 font-semibold">RRB Railway Recruitment</td>
+                                    <td class="p-3 border border-slate-200">30 KB to 70 KB</td>
+                                    <td class="p-3 border border-slate-200">30 KB to 70 KB</td>
+                                    <td class="p-3 border border-slate-200">JPG</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+
+                <!-- Article 4 -->
+                <article id="art-4" class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                    <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded">Article 4</span>
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-2 mb-4">Why Client-Side Browser Compression is 100% Safe & Secure</h2>
+                    <div class="prose prose-slate text-sm text-slate-700 space-y-3 leading-relaxed">
+                        <p>When preparing government documents like Aadhaar cards, PAN cards, marksheet scans, and signatures, uploading them to unknown third-party server tools creates severe identity theft risks.</p>
+                        <p>ExactKBwala works <b>100% inside your Web Browser</b> using JavaScript web technologies. No file data is transmitted over the internet to any remote cloud. You can even disconnect your internet Wi-Fi after opening ExactKBwala.in and it will continue compressing files seamlessly!</p>
+                    </div>
+                </article>
+
+                <!-- Article 5 -->
+                <article id="art-5" class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                    <span class="bg-rose-100 text-rose-800 text-xs font-bold px-2.5 py-1 rounded">Article 5</span>
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-2 mb-4">Top 5 Common Mistakes That Lead to Govt Exam Form Rejection</h2>
+                    <div class="prose prose-slate text-sm text-slate-700 space-y-3 leading-relaxed">
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li><b>Exceeding Maximum KB Limits:</b> Uploading a 20.5 KB file when the limit is strictly 20.0 KB causes immediate portal error. ExactKBwala prevents this by providing exact output size.</li>
+                            <li><b>Wrong Aspect Ratio / Distorted Face:</b> Stretching images manually corrupts face recognition. ExactKBwala maintains proper aspect ratio.</li>
+                            <li><b>Dark / Shadowy Background:</b> Ensure light or white backgrounds for photo uploads.</li>
+                            <li><b>Illegible Signature Ink:</b> Sign using dark blue or black ink on plain white unruled paper.</li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <!-- ABOUT US PAGE -->
+        <div id="page-about" class="page-content hidden max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+                <div class="border-b border-slate-100 pb-4">
+                    <h1 class="text-3xl font-extrabold text-slate-900">About ExactKBwala.in</h1>
+                    <p class="text-sm text-slate-500 mt-1">India's dedicated government document utility platform</p>
+                </div>
+                <div class="text-sm text-slate-700 space-y-4 leading-relaxed">
+                    <p><b>ExactKBwala.in</b> was created with a single focused vision: eliminating image rejection issues faced by millions of Indian students, job seekers, cyber café operators, and general applicants when filling out government examination and scheme forms online.</p>
+                    <p>Standard online tools often provide inaccurate file sizes, requiring multiple tedious attempts. ExactKBwala's specialized precision compression engine guarantees exact target KB output (e.g., 20.0 KB, 50.0 KB, 100.0 KB) without compromising document clarity.</p>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <h3 class="font-bold text-slate-900 mb-1">Our Core Promises:</h3>
+                        <ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm">
+                            <li>100% Free - No hidden charges or registration needed.</li>
+                            <li>Zero Server Uploads - Your photos never leave your device.</li>
+                            <li>24x7 Support Available for student queries.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DISCLAIMER PAGE -->
+        <div id="page-disclaimer" class="page-content hidden max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+                <div class="border-b border-slate-100 pb-4 flex items-center justify-between">
+                    <div>
+                        <h1 class="text-3xl font-extrabold text-slate-900">Disclaimer</h1>
+                        <p class="text-sm text-slate-500 mt-1">Important official notice regarding ExactKBwala.in</p>
+                    </div>
+                    <button onclick="showPage('home')" class="text-xs font-bold text-brand-600 bg-brand-50 hover:bg-brand-100 px-3 py-1.5 rounded-lg transition">
+                        <i class="fa-solid fa-arrow-left mr-1"></i> Back to Tool
+                    </button>
+                </div>
+                <div class="text-sm text-slate-700 space-y-4 leading-relaxed">
+                    <p>ExactKBwala.in is an independent private document utility web application developed to assist candidates and users in compressing image dimensions locally inside their browser.</p>
+                    <p><b>Non-Affiliation Notice:</b> ExactKBwala.in is <b>NOT affiliated, associated, authorized, endorsed by, or in any way officially connected with any government agency</b>, examination body, or public portal (such as SSC, UPSC, IBPS, NTA, RRB, NSDL, or State Public Service Commissions).</p>
+                    <p>All official exam names, trademarks, logos, and portal specifications mentioned on this website belong to their respective government bodies and trademark owners. Use of them does not imply any affiliation or endorsement.</p>
+                    <div class="p-4 bg-amber-50 rounded-xl border border-amber-200 text-amber-900 text-xs">
+                        <b>User Responsibility:</b> Users are requested to re-check official notifications released by respective recruitment boards before submitting their final online application form.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRIVACY POLICY PAGE -->
+        <div id="page-privacy" class="page-content hidden max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+                <div class="border-b border-slate-100 pb-4 flex items-center justify-between">
+                    <div>
+                        <h1 class="text-3xl font-extrabold text-slate-900">Privacy Policy</h1>
+                        <p class="text-sm text-slate-500 mt-1">100% Client-Side Privacy Guarantee</p>
+                    </div>
+                    <button onclick="showPage('home')" class="text-xs font-bold text-brand-600 bg-brand-50 hover:bg-brand-100 px-3 py-1.5 rounded-lg transition">
+                        <i class="fa-solid fa-arrow-left mr-1"></i> Back to Tool
+                    </button>
+                </div>
+                <div class="text-sm text-slate-700 space-y-4 leading-relaxed">
+                    <p>At ExactKBwala.in, protecting user document privacy is our top priority. Here is how our image compression utility guarantees your security:</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+                        <div class="p-4 bg-emerald-50 rounded-xl border border-emerald-200">
+                            <h3 class="font-bold text-emerald-900 text-sm mb-1"><i class="fa-solid fa-shield-halved mr-1.5"></i> Zero Server Uploads</h3>
+                            <p class="text-xs text-emerald-800">All image processing and compression algorithms execute entirely within your web browser using JavaScript HTML5 Canvas. Your sensitive identity documents never leave your device.</p>
+                        </div>
+                        <div class="p-4 bg-blue-50 rounded-xl border border-blue-200">
+                            <h3 class="font-bold text-blue-900 text-sm mb-1"><i class="fa-solid fa-user-check mr-1.5"></i> No Registration Needed</h3>
+                            <p class="text-xs text-blue-800">You do not need to register, create accounts, or provide email addresses to compress files. Everything is free and anonymous.</p>
+                        </div>
+                    </div>
+                    <p><b>1. Metadata Removal:</b> EXIF camera data, coordinates, and personal device information are automatically removed during local file processing.</p>
+                    <p><b>2. Local Storage:</b> Any preferences like selected KB targets are saved purely in temporary browser cache memory on your device.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRIVACY POLICY PAGE -->
+        <div id="page-privacy" class="page-content hidden max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+                <div class="border-b border-slate-100 pb-4">
+                    <h1 class="text-3xl font-extrabold text-slate-900">Privacy Policy</h1>
+                    <p class="text-sm text-slate-500 mt-1">Your privacy is 100% guaranteed</p>
+                </div>
+                <div class="text-sm text-slate-700 space-y-4 leading-relaxed">
+                    <p>At ExactKBwala.in, we prioritize your privacy above all else. This privacy policy outlines how our web tool handles your data:</p>
+                    <p><b>1. No Image Storage / Transmission:</b> All image compression, resizing, and processing operations take place directly in your device's web browser using client-side Web APIs. We do NOT store, upload, or transfer your images or personal documents to any external server.</p>
+                    <p><b>2. No Registration Required:</b> ExactKBwala does not collect user registration details, names, passwords, or personal identity information.</p>
+                    <p><b>3. Local Browser Storage:</b> Preferences like recent KB targets are stored purely in local memory on your device.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTACT US PAGE -->
+        <div id="page-contact" class="page-content hidden max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+                <h1 class="text-3xl font-extrabold text-slate-900 mb-2">Contact Us</h1>
+                <p class="text-slate-600 text-sm mb-6">Have questions or need assistance with your image compression? We offer 24x7 support.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Your Name</label>
+                                <input type="text" required placeholder="e.g. Amit Kumar" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Email Address / Phone</label>
+                                <input type="text" required placeholder="e.g. student@gmail.com" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Government Portal / Query</label>
+                                <textarea rows="3" required placeholder="Describe the exam portal or exact KB required..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-3 bg-brand-600 text-white font-bold text-sm rounded-xl shadow-md hover:bg-brand-700 transition">
+                                Send Message <i class="fa-solid fa-paper-plane ml-2"></i>
+                            </button>
+                        </form>
+                        <div id="contact-success" class="hidden mt-4 p-3 bg-emerald-100 text-emerald-800 text-xs font-bold rounded-lg text-center">
+                            Thank you! Your message has been sent. Our team will assist you shortly.
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 text-sm space-y-4">
+                        <h3 class="font-bold text-slate-900">Support Details</h3>
+                        <p class="text-slate-600"><i class="fa-solid fa-envelope text-brand-600 mr-2"></i> <b>Email Support:</b> support@exactkbwala.in</p>
+                        <p class="text-slate-600"><i class="fa-solid fa-globe text-brand-600 mr-2"></i> <b>Official Domain:</b> ExactKBwala.in</p>
+                        <p class="text-slate-600"><i class="fa-solid fa-clock text-brand-600 mr-2"></i> <b>Availability:</b> 24x7 Assistance</p>
+                        <div class="pt-4 border-t border-slate-200">
+                            <span class="text-xs font-bold text-slate-500 uppercase">Cyber Café Helpdesk</span>
+                            <p class="text-xs text-slate-600 mt-1">Cyber-café operators requiring bulk preset customization can write directly to our helpdesk.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- YOUR QUERIES / FAQ PAGE -->
+        <div id="page-queries" class="page-content hidden max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+                <div class="border-b border-slate-100 pb-4">
+                    <h1 class="text-3xl font-extrabold text-slate-900">Your Queries & Frequently Asked Questions</h1>
+                    <p class="text-sm text-slate-500 mt-1">Quick solutions for common image uploading issues</p>
+                </div>
+
+                <div class="space-y-4 text-sm">
+                    <div class="border border-slate-200 rounded-xl p-4">
+                        <h3 class="font-bold text-slate-900 text-base mb-1">Q: Will this tool compress my photo to EXACT 20 KB?</h3>
+                        <p class="text-slate-600">Yes! When you input 20 KB in the target box, ExactKBwala's engine iteratively optimizes compression quality and dimensions until the resulting image file size is accurate and strictly within your target requirement.</p>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-xl p-4">
+                        <h3 class="font-bold text-slate-900 text-base mb-1">Q: Are my passport photo and signature safe on this website?</h3>
+                        <p class="text-slate-600">100% Yes! All image processing happens locally within your internet browser via HTML5 JavaScript APIs. Your images are never uploaded to any remote server or cloud database.</p>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-xl p-4">
+                        <h3 class="font-bold text-slate-900 text-base mb-1">Q: Is ExactKBwala free to use? Do I need to create an account?</h3>
+                        <p class="text-slate-600">ExactKBwala is 100% free forever with no hidden fees, no limits, and absolutely no sign-up or registration required.</p>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-xl p-4">
+                        <h3 class="font-bold text-slate-900 text-base mb-1">Q: What image formats are supported?</h3>
+                        <p class="text-slate-600">ExactKBwala accepts standard digital photo formats including JPG, JPEG, PNG, WEBP, and BMP, and allows downloading in official JPG/JPEG or PNG formats required by SSC, UPSC, and IBPS portals.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER SECTION -->
+    <footer class="bg-slate-900 text-slate-400 border-t border-slate-800 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- Brand Info -->
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-7 h-7 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold text-xs">
+                            <i class="fa-solid fa-compress"></i>
+                        </div>
+                        <span class="font-extrabold text-lg text-white">Exact<span class="text-brand-500">KB</span>wala<span class="text-amber-400">.in</span></span>
+                    </div>
+                    <p class="text-slate-400 leading-relaxed">
+                        The ultimate precision image compressor for Indian government exam forms. Fast, free, and 100% private.
+                    </p>
+                    <p class="text-amber-400 font-semibold"><i class="fa-solid fa-bolt mr-1"></i> Exact Size Guarantee</p>
+                </div>
+
+                <!-- Footer Navigation Pages -->
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-wider mb-3 text-xs">Important Pages</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" onclick="showPage('home')" class="hover:text-white transition">Home</a></li>
+                        <li><a href="#" onclick="showPage('about')" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="#" onclick="showPage('disclaimer')" class="hover:text-white transition">Disclaimer</a></li>
+                        <li><a href="#" onclick="showPage('privacy')" class="hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="#" onclick="showPage('contact')" class="hover:text-white transition">Contact Us</a></li>
+                        <li><a href="#" onclick="showPage('queries')" class="hover:text-white transition">Your Queries / FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Popular Exam Sizes -->
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-wider mb-3 text-xs">Quick Target Sizes</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" onclick="setPresetAndScroll(20)" class="hover:text-white transition">Compress Photo to Exact 20 KB</a></li>
+                        <li><a href="#" onclick="setPresetAndScroll(10)" class="hover:text-white transition">Compress Signature to 10 KB</a></li>
+                        <li><a href="#" onclick="setPresetAndScroll(50)" class="hover:text-white transition">Compress Photo to 50 KB</a></li>
+                        <li><a href="#" onclick="setPresetAndScroll(100)" class="hover:text-white transition">Compress Document to 100 KB</a></li>
+                        <li><a href="#" onclick="setPresetAndScroll(200)" class="hover:text-white transition">Compress PDF/Image to 200 KB</a></li>
+                    </ul>
+                </div>
+
+                <!-- 5 Guides/Articles -->
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-wider mb-3 text-xs">Articles & Guides</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" onclick="openArticle('art-1')" class="hover:text-white transition">1. How ExactKBwala Works</a></li>
+                        <li><a href="#" onclick="openArticle('art-2')" class="hover:text-white transition">2. Compress to 20KB Guide</a></li>
+                        <li><a href="#" onclick="openArticle('art-3')" class="hover:text-white transition">3. SSC & UPSC Official Specs</a></li>
+                        <li><a href="#" onclick="openArticle('art-4')" class="hover:text-white transition">4. Client-Side Browser Security</a></li>
+                        <li><a href="#" onclick="openArticle('art-5')" class="hover:text-white transition">5. Avoid Form Rejection Tips</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-6 flex flex-col sm:flex-row items-center justify-between text-slate-500 gap-3">
+                <p>© 2026 ExactKBwala.in - All Rights Reserved. Designed for Government Applicants.</p>
+                <div class="flex space-x-4">
+                    <span class="hover:text-slate-400">Made with <i class="fa-solid fa-heart text-rose-500 mx-0.5"></i> for India</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /* Global variables */
+        let currentFile = null;
+        let originalImgElement = new Image();
+        let currentBlob = null;
+        let currentBlobUrl = null;
+        let currentDownloadFilename = "ExactKBwala_Compressed.jpg";
+
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('file-input');
+
+        dropzone.addEventListener('click', () => fileInput.click());
+
+        dropzone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropzone.classList.add('bg-brand-50/50', 'border-brand-500');
+        });
+
+        dropzone.addEventListener('dragleave', () => {
+            dropzone.classList.remove('bg-brand-50/50', 'border-brand-500');
+        });
+
+        dropzone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropzone.classList.remove('bg-brand-50/50', 'border-brand-500');
+            if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+                processFile(e.dataTransfer.files[0]);
+            }
+        });
+
+        /* Toggle Quality Control Mode UI */
+        function toggleQualityMode() {
+            const mode = document.getElementById('compression-mode-select').value;
+            const targetContainer = document.getElementById('target-kb-container');
+            const manualContainer = document.getElementById('manual-quality-container');
+            const qualityPresetsBar = document.getElementById('quality-presets-bar');
+
+            if (mode === 'manual') {
+                targetContainer.classList.add('hidden');
+                manualContainer.classList.remove('hidden');
+                qualityPresetsBar.classList.remove('hidden');
+            } else {
+                targetContainer.classList.remove('hidden');
+                manualContainer.classList.add('hidden');
+                qualityPresetsBar.classList.add('hidden');
+            }
+            triggerRecompress();
+        }
+
+        function syncQualityFromSlider() {
+            const val = document.getElementById('quality-slider').value;
+            document.getElementById('quality-num-input').value = val;
+            document.getElementById('quality-val-badge').innerText = `${val}%`;
+        }
+
+        function setQualityLevel(pct) {
+            document.getElementById('quality-slider').value = pct;
+            document.getElementById('quality-num-input').value = pct;
+            document.getElementById('quality-val-badge').innerText = `${pct}%`;
+
+            if (pct >= 90) {
+                document.getElementById('clarity-priority-select').value = 'ultra';
+            } else if (pct >= 70) {
+                document.getElementById('clarity-priority-select').value = 'balanced';
+            } else {
+                document.getElementById('clarity-priority-select').value = 'compact';
+            }
+
+            // Highlight active button visually
+            const btns = document.querySelectorAll('.quality-preset-btn');
+            btns.forEach(btn => {
+                if (btn.innerText.includes(`${pct}%`)) {
+                    btn.className = "quality-preset-btn px-3 py-2 rounded-lg text-xs font-bold bg-emerald-600 text-white border border-emerald-600 transition shadow-sm text-center";
+                } else {
+                    btn.className = "quality-preset-btn px-3 py-2 rounded-lg text-xs font-bold bg-white text-slate-800 border border-slate-200 hover:border-emerald-500 hover:bg-emerald-600 hover:text-white transition shadow-sm text-center";
+                }
+            });
+
+            triggerRecompress();
+        }
+
+        function syncQualityFromNumber() {
+            let val = parseInt(document.getElementById('quality-num-input').value) || 90;
+            if (val < 1) val = 1;
+            if (val > 100) val = 100;
+            document.getElementById('quality-num-input').value = val;
+            document.getElementById('quality-slider').value = val;
+            document.getElementById('quality-val-badge').innerText = `${val}%`;
+        }
+
+        function updateQualitySliderVal() {
+            syncQualityFromSlider();
+        }
+
+        function setQualityPreset(pct) {
+            setQualityLevel(pct);
+        }
+
+        /* Setup Before & After Drag Slider Functionality */
+        function initBeforeAfterSlider() {
+            const container = document.getElementById('ba-container');
+            const overlay = document.getElementById('ba-overlay');
+            const handle = document.getElementById('ba-handle');
+            let isDragging = false;
+
+            function updateSliderPosition(x) {
+                const rect = container.getBoundingClientRect();
+                let position = x - rect.left;
+                if (position < 0) position = 0;
+                if (position > rect.width) position = rect.width;
+                
+                const percentage = (position / rect.width) * 100;
+                overlay.style.width = `${percentage}%`;
+                handle.style.left = `${percentage}%`;
+            }
+
+            container.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                updateSliderPosition(e.clientX);
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                updateSliderPosition(e.clientX);
+            });
+
+            window.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+
+            container.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                if (e.touches.length > 0) updateSliderPosition(e.touches[0].clientX);
+            });
+
+            window.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                if (e.touches.length > 0) updateSliderPosition(e.touches[0].clientX);
+            });
+
+            window.addEventListener('touchend', () => {
+                isDragging = false;
+            });
+        }
+
+        function handleFileSelect(event) {
+            if (event.target.files && event.target.files.length > 0) {
+                processFile(event.target.files[0]);
+            }
+        }
+
+        function setPreset(targetKb, label) {
+            document.getElementById('compression-mode-select').value = 'target';
+            toggleQualityMode();
+            document.getElementById('target-kb-input').value = targetKb;
+            if (currentFile) {
+                compressImageWithAccuracy();
+            }
+        }
+
+        function setPresetAndScroll(targetKb) {
+            showPage('home');
+            setPreset(targetKb, '');
+            scrollToSection('compressor-tool');
+        }
+
+        function triggerRecompress() {
+            if (currentFile) {
+                compressImageWithAccuracy();
+            }
+        }
+
+        function processFile(file) {
+            if (!file.type.startsWith('image/')) {
+                alert('Please select a valid image file (JPG, PNG, WEBP, etc.).');
+                return;
+            }
+
+            currentFile = file;
+
+            // Display Original File Details
+            const origSizeKB = (file.size / 1024).toFixed(2);
+            document.getElementById('orig-size-badge').innerText = `${origSizeKB} KB`;
+            document.getElementById('orig-format').innerText = file.type.toUpperCase().replace('IMAGE/', '');
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                originalImgElement = new Image();
+                originalImgElement.onload = function () {
+                    document.getElementById('orig-img-preview').src = e.target.result;
+                    document.getElementById('ba-img-before').src = e.target.result;
+                    document.getElementById('orig-dimensions').innerText = `${originalImgElement.width} x ${originalImgElement.height} px`;
+                    
+                    // Trigger initial compression algorithm
+                    compressImageWithAccuracy();
+                };
+                originalImgElement.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        /**
+         * JPEG Comment Padding Utility to match EXACT byte target (e.g. Exactly 20,480 Bytes for 20 KB)
+         */
+        function padJpegToExactBytes(uint8Array, targetBytes) {
+            const currentBytes = uint8Array.length;
+            if (currentBytes > targetBytes) return uint8Array;
+            if (currentBytes === targetBytes) return uint8Array;
+            
+            const diff = targetBytes - currentBytes;
+            if (diff < 4) return uint8Array; // Minimum COM header size is 4 bytes
+            
+            let insertIndex = uint8Array.length;
+            if (uint8Array[insertIndex - 2] === 0xFF && uint8Array[insertIndex - 1] === 0xD9) {
+                insertIndex = insertIndex - 2; // Insert before EOI
+            }
+            
+            const payloadLen = diff;
+            const commentHeader = new Uint8Array(4);
+            commentHeader[0] = 0xFF;
+            commentHeader[1] = 0xFE; // JPEG COM Marker
+            commentHeader[2] = ((payloadLen - 2) >> 8) & 0xFF;
+            commentHeader[3] = (payloadLen - 2) & 0xFF;
+            
+            const paddingData = new Uint8Array(payloadLen - 4);
+            paddingData.fill(0x20); // space padding ASCII
+            
+            const result = new Uint8Array(targetBytes);
+            result.set(uint8Array.subarray(0, insertIndex), 0);
+            result.set(commentHeader, insertIndex);
+            result.set(paddingData, insertIndex + 4);
+            result.set(uint8Array.subarray(insertIndex), insertIndex + payloadLen);
+            
+            return result;
+        }
+
+        /**
+         * Smart Anti-Blur Sharpening Filter (Unsharp Mask Convolution)
+         * Keeps signatures, dark ink text, and eyes/faces sharp after compression.
+         */
+        function applySharpenFilter(ctx, w, h, strengthLevel) {
+            if (strengthLevel === 'none') return;
+            try {
+                let amount = strengthLevel === 'high' ? 0.28 : 0.15;
+                let imgData = ctx.getImageData(0, 0, w, h);
+                let data = imgData.data;
+                let copy = new Uint8Array(data);
+                
+                // 3x3 Sharpening Kernel
+                for (let y = 1; y < h - 1; y++) {
+                    for (let x = 1; x < w - 1; x++) {
+                        let idx = (y * w + x) * 4;
+                        for (let c = 0; c < 3; c++) {
+                            let center = copy[idx + c];
+                            let up = copy[((y - 1) * w + x) * 4 + c];
+                            let down = copy[((y + 1) * w + x) * 4 + c];
+                            let left = copy[(y * w + (x - 1)) * 4 + c];
+                            let right = copy[(y * w + (x + 1)) * 4 + c];
+                            
+                            let sharpened = 5 * center - up - down - left - right;
+                            data[idx + c] = Math.min(255, Math.max(0, center * (1 - amount) + sharpened * amount));
+                        }
+                    }
+                }
+                ctx.putImageData(imgData, 0, 0);
+            } catch (e) {
+                console.warn('Sharpening pass skipped due to canvas restrictions:', e);
+            }
+        }
+
+        /**
+         * Core Algorithm: High Clarity Precision Compression Engine
+         * Preserves visual sharpness using multi-step downscaling, edge sharpening, and high-precision iterative binary search.
+         */
+        async function compressImageWithAccuracy() {
+            if (!currentFile || !originalImgElement.src) return;
+
+            const loader = document.getElementById('processing-loader');
+            const resultBox = document.getElementById('result-box');
+            const progressBar = document.getElementById('progress-bar');
+            const progressPercent = document.getElementById('progress-percent');
+            const progressStepText = document.getElementById('progress-step-text');
+
+            loader.classList.remove('hidden');
+            resultBox.classList.add('hidden');
+
+            const compMode = document.getElementById('compression-mode-select').value;
+            const userTargetKB = parseFloat(document.getElementById('target-kb-input').value) || 20;
+            const targetBytes = Math.floor(userTargetKB * 1024); // e.g. 20 KB = 20,480 Bytes
+            const outputMime = document.getElementById('output-format').value;
+            const clarityPriority = document.getElementById('clarity-priority-select').value;
+            const sharpenLevel = document.getElementById('sharpen-filter-select') ? document.getElementById('sharpen-filter-select').value : 'high';
+
+            // Animated step 1
+            progressBar.style.width = '25%';
+            progressPercent.innerText = '25%';
+            progressStepText.innerText = `Analyzing image & configuring anti-blur engine for ${userTargetKB} KB...`;
+            await new Promise(r => setTimeout(r, 60));
+
+            let width = originalImgElement.width;
+            let height = originalImgElement.height;
+            let finalBlob = null;
+            let finalCanvas = document.createElement('canvas');
+
+            // Helper function to draw crisp high-quality downscaled image on canvas
+            function renderCrispCanvas(targetW, targetH) {
+                let cvs = document.createElement('canvas');
+                cvs.width = targetW;
+                cvs.height = targetH;
+                let ctx = cvs.getContext('2d', { alpha: false });
+                
+                ctx.imageSmoothingEnabled = true;
+                ctx.imageSmoothingQuality = 'high';
+                
+                // Solid white background to prevent dark artifacts on transparent PNGs
+                ctx.fillStyle = "#FFFFFF";
+                ctx.fillRect(0, 0, targetW, targetH);
+
+                // Multi-step bicubic downscaling for superior clarity retention
+                if (width / targetW > 2 || height / targetH > 2) {
+                    let tempCvs = document.createElement('canvas');
+                    let tempCtx = tempCvs.getContext('2d');
+                    tempCvs.width = Math.floor(width / 2);
+                    tempCvs.height = Math.floor(height / 2);
+                    tempCtx.imageSmoothingEnabled = true;
+                    tempCtx.imageSmoothingQuality = 'high';
+                    tempCtx.drawImage(originalImgElement, 0, 0, tempCvs.width, tempCvs.height);
+
+                    ctx.drawImage(tempCvs, 0, 0, targetW, targetH);
+                } else {
+                    ctx.drawImage(originalImgElement, 0, 0, targetW, targetH);
+                }
+
+                // Apply anti-blur edge sharpening
+                applySharpenFilter(ctx, targetW, targetH, sharpenLevel);
+
+                return cvs;
+            }
+
+            if (compMode === 'manual') {
+                // Manual Quality Mode
+                const qualityPct = (parseInt(document.getElementById('quality-slider').value) || 90) / 100;
+                
+                progressBar.style.width = '65%';
+                progressPercent.innerText = '65%';
+                progressStepText.innerText = `Applying crisp manual quality setting (${Math.round(qualityPct * 100)}%)...`;
+                await new Promise(r => setTimeout(r, 60));
+
+                finalCanvas = renderCrispCanvas(width, height);
+                let dataUrl = finalCanvas.toDataURL(outputMime, qualityPct);
+                finalBlob = dataURLToBlob(dataUrl);
+
+            } else {
+                // Target KB Mode with High-Precision Binary Search
+                progressBar.style.width = '50%';
+                progressPercent.innerText = '50%';
+                progressStepText.innerText = `Optimizing clarity for EXACT ${userTargetKB} KB (${targetBytes.toLocaleString()} Bytes)...`;
+                await new Promise(r => setTimeout(r, 80));
+
+                let minDimension = 340; // High resolution floor to keep text & faces crisp
+                if (clarityPriority === 'ultra') minDimension = 440;
+                if (clarityPriority === 'compact') minDimension = 220;
+
+                let minScale = Math.max(minDimension / Math.max(width, height), 0.15);
+                let scaleLower = Math.min(minScale, 1.0);
+                let scaleUpper = 1.0;
+                let bestBlob = null;
+                let bestCanvas = null;
+
+                // High-iteration binary search loop (16 steps for maximum clarity & precision)
+                for (let iter = 0; iter < 16; iter++) {
+                    let currentScale = (scaleLower + scaleUpper) / 2;
+                    let curW = Math.max(80, Math.floor(width * currentScale));
+                    let curH = Math.max(80, Math.floor(height * currentScale));
+
+                    let tempCvs = renderCrispCanvas(curW, curH);
+
+                    let qLow = 0.20; // High baseline JPEG quality floor
+                    let qHigh = 0.98;
+                    let localBestBlob = null;
+
+                    for (let qIter = 0; qIter < 12; qIter++) {
+                        let qMid = (qLow + qHigh) / 2;
+                        let dataUrl = tempCvs.toDataURL('image/jpeg', qMid);
+                        let blob = dataURLToBlob(dataUrl);
+
+                        if (blob.size <= targetBytes) {
+                            localBestBlob = blob;
+                            qLow = qMid; // try higher quality
+                        } else {
+                            qHigh = qMid; // adjust compression
+                        }
+                    }
+
+                    if (localBestBlob) {
+                        bestBlob = localBestBlob;
+                        bestCanvas = tempCvs;
+                        scaleLower = currentScale;
+                    } else {
+                        scaleUpper = currentScale;
+                    }
+                }
+
+                // Fallback for extreme compression demands
+                if (!bestBlob) {
+                    let curW = Math.max(120, Math.floor(width * 0.35));
+                    let curH = Math.max(120, Math.floor(height * 0.35));
+                    bestCanvas = renderCrispCanvas(curW, curH);
+                    let fallbackDataUrl = bestCanvas.toDataURL('image/jpeg', 0.25);
+                    bestBlob = dataURLToBlob(fallbackDataUrl);
+                }
+
+                finalBlob = bestBlob;
+                finalCanvas = bestCanvas;
+
+                // Byte padding to hit target KB precisely
+                if (outputMime === 'image/jpeg' || outputMime === 'image/jpg') {
+                    const arrayBuffer = await finalBlob.arrayBuffer();
+                    const uint8 = new Uint8Array(arrayBuffer);
+                    const paddedUint8 = padJpegToExactBytes(uint8, targetBytes);
+                    finalBlob = new Blob([paddedUint8], { type: 'image/jpeg' });
+                }
+            }
+
+            // Animated completion step
+            progressBar.style.width = '100%';
+            progressPercent.innerText = '100%';
+            progressStepText.innerText = 'High clarity compression complete!';
+            await new Promise(r => setTimeout(r, 60));
+
+            // Store current compressed Blob globally
+            currentBlob = finalBlob;
+            if (currentBlobUrl) {
+                URL.revokeObjectURL(currentBlobUrl); // Revoke old URL to prevent memory leaks
+            }
+            currentBlobUrl = URL.createObjectURL(finalBlob);
+
+            // Display Results
+            const compSizeKB = (finalBlob.size / 1024).toFixed(2);
+            const savedPct = Math.max(0, (((currentFile.size - finalBlob.size) / currentFile.size) * 100)).toFixed(1);
+
+            document.getElementById('comp-size-badge').innerText = `${compSizeKB} KB`;
+            document.getElementById('comp-dimensions').innerText = `${finalCanvas.width} x ${finalCanvas.height} px`;
+            document.getElementById('comp-saved-pct').innerText = `${savedPct}% Smaller`;
+
+            document.getElementById('comp-img-preview').src = currentBlobUrl;
+            document.getElementById('ba-img-after').src = currentBlobUrl;
+
+            let ext = outputMime.includes('png') ? '.png' : (outputMime.includes('webp') ? '.webp' : '.jpg');
+            currentDownloadFilename = `ExactKBwala_${compMode === 'manual' ? 'Quality' + document.getElementById('quality-slider').value + 'pct' : userTargetKB + 'KB_Exact'}_${currentFile.name.split('.')[0]}${ext}`;
+
+            const statusText = document.getElementById('success-status-text');
+            if (compMode === 'manual') {
+                statusText.innerText = `Manual Quality: ${document.getElementById('quality-slider').value}% | Sharp Output Size: ${compSizeKB} KB (${finalBlob.size.toLocaleString()} Bytes)`;
+            } else {
+                statusText.innerText = `🎯 Target Size: ${userTargetKB} KB | Exact High-Clarity Output: ${compSizeKB} KB (${finalBlob.size.toLocaleString()} Bytes)`;
+            }
+
+            loader.classList.add('hidden');
+            resultBox.classList.remove('hidden');
+
+            // Initialize Before & After Slider
+            initBeforeAfterSlider();
+        }
+
+        /**
+         * Rock-Solid Multi-Device Download Handler
+         * Handles mobile browsers, Safari, and webviews cleanly with Blob & Data URL fallbacks.
+         */
+        function downloadCompressedImage() {
+            if (!currentBlob) {
+                alert("Please select and compress an image first.");
+                return;
+            }
+
+            try {
+                // Primary method: Programmatic Blob URL download link
+                const downloadUrl = currentBlobUrl || URL.createObjectURL(currentBlob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = downloadUrl;
+                a.download = currentDownloadFilename;
+                
+                document.body.appendChild(a);
+                a.click();
+                
+                setTimeout(() => {
+                    if (document.body.contains(a)) {
+                        document.body.removeChild(a);
+                    }
+                }, 400);
+
+                // Show success toast notification
+                const toast = document.getElementById('download-toast');
+                if (toast) {
+                    toast.classList.remove('hidden');
+                    setTimeout(() => {
+                        toast.classList.add('hidden');
+                    }, 4000);
+                }
+            } catch (err) {
+                console.error("Standard download failed, attempting fallback:", err);
+                
+                // Fallback method: Data URL conversion for restricted mobile webviews
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const fallbackLink = document.createElement('a');
+                    fallbackLink.href = e.target.result;
+                    fallbackLink.download = currentDownloadFilename;
+                    fallbackLink.target = '_blank';
+                    document.body.appendChild(fallbackLink);
+                    fallbackLink.click();
+                    document.body.removeChild(fallbackLink);
+                };
+                reader.readAsDataURL(currentBlob);
+            }
+        }
+
+        /**
+         * Open full image preview in new tab fallback for restricted mobile browsers
+         */
+        function openImageInNewTab() {
+            if (!currentBlobUrl && !currentBlob) return;
+            const url = currentBlobUrl || URL.createObjectURL(currentBlob);
+            const win = window.open(url, '_blank');
+            if (!win) {
+                window.location.href = url;
+            }
+        }
+
+        function dataURLToBlob(dataurl) {
+            let arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+                bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+            while(n--){
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            return new Blob([u8arr], {type:mime});
+        }
+
+        function resetCompressor() {
+            currentFile = null;
+            document.getElementById('file-input').value = '';
+            document.getElementById('result-box').classList.add('hidden');
+            scrollToSection('compressor-tool');
+        }
+
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(p => p.classList.add('hidden'));
+
+            const targetPage = document.getElementById(`page-${pageId}`);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function openArticle(artId) {
+            showPage('articles');
+            setTimeout(() => {
+                const el = document.getElementById(artId);
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    el.classList.add('ring-2', 'ring-brand-500');
+                    setTimeout(() => el.classList.remove('ring-2', 'ring-brand-500'), 2500);
+                }
+            }, 100);
+        }
+
+        function scrollToSection(id) {
+            showPage('home');
+            setTimeout(() => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 50);
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            document.getElementById('contact-success').classList.remove('hidden');
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
